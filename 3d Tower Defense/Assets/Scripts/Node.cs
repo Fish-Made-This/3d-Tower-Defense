@@ -8,35 +8,34 @@ public class Node : MonoBehaviour
     private Renderer _renderer;
     private Color _defaultColor;
     private GameObject _turret;
+    private BuildManager _buildManager;
 
-    void Start()
-    {        
+    private void Start()
+    {
+        _buildManager = BuildManager.instance;
         _renderer = GetComponent<Renderer>();
         _defaultColor = _renderer.material.color;
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        Debug.Log("MouseDown works!");
-        if (_turret != null)
+        if (_buildManager.TurretToBuild == null) { return; }
+        if (_turret != null) { return; }
+
+        _turret = Instantiate(_buildManager.TurretToBuild, transform.position + offSet, transform.rotation);
+
+    }
+
+    private void OnMouseEnter()
+    {
+        if (_buildManager.TurretToBuild != null)
         {
-            Debug.Log("Can't build here, something already here");
-            return;
+            _renderer.material.color = hoverColor;
         }
-
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        _turret = Instantiate(turretToBuild, transform.position + offSet, transform.rotation);
     }
 
-    void OnMouseEnter()
+    private void OnMouseExit()
     {
-        Debug.Log("MouseEnter works!");
-        _renderer.material.color = hoverColor;
-    }
-
-    void OnMouseExit()
-    {
-        Debug.Log("MouseExit works!");
         _renderer.material.color = _defaultColor;
     }
 }
