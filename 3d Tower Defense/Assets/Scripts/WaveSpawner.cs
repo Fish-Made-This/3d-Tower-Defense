@@ -35,8 +35,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     void SpawnEnemy()
-    {
-        Debug.Log("Spawning Enemy!");
+    {        
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
