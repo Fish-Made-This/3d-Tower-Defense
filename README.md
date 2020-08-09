@@ -6,8 +6,9 @@ New stuff I learned so far
 -----------------------------
 - 3d model manipulation
 - Simple AI instructions
-- Instantiating new objects from code
+- Instantiating game objects from code
 - Using Unity effects
+- That the new input system doesn't handle mouse events yet....
 
 The game
 -----------------------------
